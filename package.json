@@ -6,6 +6,7 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "degit": "^2.8.0"
+    "degit": "^2.8.0",
+    "esbuild": "^0.8.36"
   }
 }
