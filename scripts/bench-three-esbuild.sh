@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ./scripts/bench-three.sh
 
 # Clears esbuild output before running tests
