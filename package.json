@@ -1,7 +1,29 @@
 {
   "name": "js-bundler-benchmark",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "author": "Henrique Borges <henriqueborgeshbr@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "bench-esbuild": "bash ./scripts/bench-three-esbuild.sh",
+    "bump:patch": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --patch",
+    "bump:minor": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --minor",
+    "bump:major": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --major",
+    "version": "yarn changelog -p",
+    "changelog": "auto-changelog --template keepachangelog -l false --hide-credit",
+    "postchangelog": "git add CHANGELOG.md",
+    "amend-changelog": "cross-env HUSKY_SKIP_HOOKS=1 git commit --amend --no-edit --no-verify"
+  },
+  "husky": {
+    "post-commit": "yarn changelog -u && yarn amend-changelog",
+    "pre-push": "cross-env HUSKY_SKIP_HOOKS=1 git push --tags"
+  },
+  "devDependencies": {
+    "auto-changelog": "^2.2.1",
+    "cross-env": "^7.0.3",
+    "degit": "^2.8.0",
+    "esbuild": "^0.8.36",
+    "husky": "^4.3.8"
+  }
 }
