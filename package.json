@@ -11,7 +11,6 @@
     "bump:minor": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --minor",
     "bump:major": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --major",
     "version": "yarn changelog -p",
-    "postversion": "yes \"\" | yarn publish",
     "changelog": "auto-changelog --template keepachangelog -l false --hide-credit",
     "postchangelog": "git add CHANGELOG.md",
     "amend-changelog": "cross-env HUSKY_SKIP_HOOKS=1 git commit --amend --no-edit --no-verify"
