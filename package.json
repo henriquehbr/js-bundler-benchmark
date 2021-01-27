@@ -5,6 +5,9 @@
   "author": "Henrique Borges <henriqueborgeshbr@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "bench-esbuild": "./scripts/bench-three-esbuild.sh"
+  },
   "devDependencies": {
     "degit": "^2.8.0",
     "esbuild": "^0.8.36"
