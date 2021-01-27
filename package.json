@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "bench-esbuild": "./scripts/bench-three-esbuild.sh",
+    "bench-esbuild": "bash ./scripts/bench-three-esbuild.sh",
     "bump:patch": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --patch",
     "bump:minor": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --minor",
     "bump:major": "cross-env HUSKY_SKIP_HOOKS=1 yarn version --major",

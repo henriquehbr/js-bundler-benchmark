@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ./scripts/github-three.sh
 
 mkdir -p bench/three/src
