@@ -1,32 +1,35 @@
-import minimist from 'minimist'
+import { createReadStream } from 'fs'
 import Table from 'cli-table3'
+import csv from 'csv-parser'
 
-const argv = minimist(process.argv.slice(2))
+const csvToJson = csvFile =>
+  new Promise((resolve, reject) => {
+    let jsonData = []
+    createReadStream(csvFile, { encoding: 'utf-8' })
+      .pipe(csv())
+      .on('data', data => jsonData.push(data))
+      .on('end', () => resolve(jsonData))
+      .on('error', reject)
+  })
 
-const [esbuildResults, rollupResults, webpackResults] = [
-  {
-    name: 'esbuild',
-    time: argv.esbuildTime + 's',
-    relativeSlowdown: '1x',
-    outputSize: argv.esbuildSize
-  }
-  /*{
-    name: 'Rollup',
-    time: argv.rollupTime + 's',
-    relativeSlowdown: `${argv.rollupTime / argv.esbuildTime} (${
-      (argv.rollupTime * 100) / argv.esbuildTime
-    }%)`,
-    outputSize: argv.esbuildSize
-  },
-  {
-    name: 'Webpack',
-    time: argv.webpackTime + 's',
-    relativeSlowdown: `${argv.esbuildTime / argv.webpackTime} (${
-      (argv.webpackTime * 100) / argv.esbuildTime
-    }%)`,
-    outputSize: argv.webpackSize
-  }*/
-]
+const [esbuildResults] = await csvToJson('benchmark.csv')
+
+/*{
+  bundler: 'Rollup',
+  time: argv.rollupTime + 's',
+  relativeSlowdown: `${argv.rollupTime / argv.esbuildTime} (${
+    (argv.rollupTime * 100) / argv.esbuildTime
+  }%)`,
+  outputSize: argv.esbuildSize
+},
+{
+  bundler: 'Webpack',
+  time: argv.webpackTime + 's',
+  relativeSlowdown: `${argv.esbuildTime / argv.webpackTime} (${
+    (argv.webpackTime * 100) / argv.esbuildTime
+  }%)`,
+  outputSize: argv.webpackSize
+}*/
 
 const table = new Table({
   head: ['Bundler', 'Time', 'Relative slowdown', 'Output size']

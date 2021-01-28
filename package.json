@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "cli-table3": "^0.6.0",
-    "minimist": "^1.2.5"
+    "csv-parser": "^3.0.0"
   }
 }

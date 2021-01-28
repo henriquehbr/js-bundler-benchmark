@@ -17,4 +17,7 @@ RUN_TIME=$(time (esbuild \
 
 BUNDLE_SIZE=$(ls -sh bench/three/esbuild/entry.esbuild.js | cut -d ' ' -f 1)
 
-node scripts/generate-output.js --esbuildTime=$RUN_TIME --esbuildSize=$BUNDLE_SIZE
+# Bundler name | Time | Relative slowdown | Output size
+echo -e "esbuild,${RUN_TIME}s,1x,${BUNDLE_SIZE}" >> benchmark.csv
+
+node scripts/generate-output.js
