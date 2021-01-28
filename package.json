@@ -1,6 +1,6 @@
 {
   "name": "js-bundler-benchmark",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "author": "Henrique Borges <henriqueborgeshbr@gmail.com>",
   "license": "MIT",
@@ -25,5 +25,9 @@
     "degit": "^2.8.0",
     "esbuild": "^0.8.36",
     "husky": "^4.3.8"
+  },
+  "dependencies": {
+    "cli-table3": "^0.6.0",
+    "csv-parser": "^3.0.0"
   }
 }
