@@ -5,12 +5,16 @@
 # Clears esbuild output before running tests
 rm -rf bench/three/esbuild
 
-time -p esbuild \
+TIMEFORMAT=%R
+
+RUN_TIME=$(time (esbuild \
   --bundle \
   --summary \
   --global-name=THREE \
   --sourcemap \
   --minify bench/three/src/entry.js \
-  --outfile=bench/three/esbuild/entry.esbuild.js
+  --outfile=bench/three/esbuild/entry.esbuild.js >/dev/null 2>&1) 2>&1)
 
-du -h bench/three/esbuild/entry.esbuild.js*
+BUNDLE_SIZE=$(ls -sh bench/three/esbuild/entry.esbuild.js | cut -d ' ' -f 1)
+
+node scripts/generate-output.js --esbuildTime=$RUN_TIME --esbuildSize=$BUNDLE_SIZE

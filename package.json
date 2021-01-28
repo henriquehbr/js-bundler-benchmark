@@ -25,5 +25,9 @@
     "degit": "^2.8.0",
     "esbuild": "^0.8.36",
     "husky": "^4.3.8"
+  },
+  "dependencies": {
+    "cli-table3": "^0.6.0",
+    "minimist": "^1.2.5"
   }
 }
